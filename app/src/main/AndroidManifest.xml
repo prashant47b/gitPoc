@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lab47billion.appchooser">
+
+    <uses-permission android:name="com.lab47billion.permission" />
+    <permission
+        android:name="com.lab47billion.permission"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--CleverTap-->
+
+    <!-- Required to retrieve a unique identifier for the device, see note below -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- Recommended so that we can get the user's primary e-mail address -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- Recommended so that we can get the user's location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Recommended -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.your.package.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.your.package.permission.C2D_MESSAGE" />
+
+
+    <application
+        android:name="com.clevertap.android.sdk.Application"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SplashActivity"
+            android:launchMode="standard"></activity>
+        <activity
+            android:name=".DestinationActivity"
+            android:label="SignUp"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.CheckWallet"
+            android:label="Wallet" />
+        <activity
+            android:name=".EmptyActivity"
+            android:permission="com.lab47billion.permission">
+            <intent-filter>
+                <data
+                    android:host="gotuktuk.in"
+                    android:port="2085"
+                    android:scheme="http" />
+                <data
+                    android:host="gotuktuk.in"
+                    android:port="2085"
+                    android:scheme="tk" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--CleverTap-->
+        <meta-data
+            android:name="CLEVERTAP_ACCOUNT_ID"
+            android:value="84R-K96-464Z" />
+        <meta-data
+            android:name="CLEVERTAP_TOKEN"
+            android:value="6c3-24b" />
+
+        <receiver
+            android:name="com.clevertap.android.sdk.InstallReferrerBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>
