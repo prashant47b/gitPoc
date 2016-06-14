@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">AppChooser</string>
     <string name="appupdater_btn_dismiss">Main</string>
+    <array name="picker">
+        <item>ONE</item>
+        <item>TWO</item>
+        <item>THREE</item>
+        <item>FOUR</item>
+        <item>FIVE</item>
+        <item>SIX</item>
+        <item>SEVEN</item>
+        <item>EIGHT</item>
+    </array>
 </resources>
