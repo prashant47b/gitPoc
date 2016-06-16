@@ -97,7 +97,6 @@ public class HorizontalPicker extends RelativeLayout {
     private View[][] mLayouts;
 
 
-
     private TextPaint mTextPaint;
     private BoringLayout.Metrics mBoringMetrics;
     private TextUtils.TruncateAt mEllipsize;
@@ -144,17 +143,17 @@ public class HorizontalPicker extends RelativeLayout {
 
     public HorizontalPicker(Context context) {
         this(context, null);
-        _context=context;
+        _context = context;
     }
 
     public HorizontalPicker(Context context, AttributeSet attrs) {
         this(context, attrs, R.attr.horizontalPickerStyle);
-        _context=context;
+        _context = context;
     }
 
     public HorizontalPicker(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        _context=context;
+        _context = context;
 
         // create the selector wheel paint
         TextPaint paint = new TextPaint();
@@ -187,7 +186,7 @@ public class HorizontalPicker extends RelativeLayout {
             if (mNormalTextSize > -1) {
                 setTextSize(mNormalTextSize);
             }
-            if(mSelectedTextSize == -1){
+            if (mSelectedTextSize == -1) {
                 mSelectedTextSize = mNormalTextSize;
             }
 
@@ -263,9 +262,9 @@ public class HorizontalPicker extends RelativeLayout {
             heightText += getPaddingTop() + getPaddingBottom();
 
             if (heightMode == MeasureSpec.AT_MOST) {
-                height = Math.min(heightSize, heightText*2);
+                height = Math.min(heightSize, heightText * 2);
             } else {
-                height = heightText*2;
+                height = heightText * 2;
             }
         }
 
@@ -313,18 +312,18 @@ public class HorizontalPicker extends RelativeLayout {
                 int yTranslate;
                 if (!isScrollingStart && i == selectedItem) {
                     mTextPaint.setTextSize(mSelectedTextSize);
-                }else{
+                } else {
                     mTextPaint.setTextSize(mNormalTextSize);
                 }
 
                 // translate vertically to center
-                if(layoutSub != null) {
+                if (layoutSub != null) {
                     yTranslate = (canvas.getHeight() - (layout.getHeight() + layoutSub.getHeight())) / 2;
-                }else{
+                } else {
                     yTranslate = (canvas.getHeight() - layout.getHeight()) / 2;
                 }
 
-                if(i == selectedItem && topPadding != -1){
+                if (i == selectedItem && topPadding != -1) {
                     yTranslate = topPadding;
                 }
 
@@ -341,10 +340,10 @@ public class HorizontalPicker extends RelativeLayout {
                 canvas.clipRect(clipBounds);
                 layout.draw(canvas);
 
-                if(layoutSub != null) {
+                if (layoutSub != null) {
                     Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
                     int heightText = (int) (Math.abs(fontMetrics.ascent) + Math.abs(fontMetrics.descent));
-                    canvas.translate(-x, (layout.getHeight()+ heightText - getTopPadding() )/ 2);
+                    canvas.translate(-x, (layout.getHeight() + heightText - getTopPadding()) / 2);
                     canvas.clipRect(clipBounds);
                     layoutSub.draw(canvas);
                 }
@@ -421,7 +420,7 @@ public class HorizontalPicker extends RelativeLayout {
 //                mLayouts[i][0].replaceOrMake(mValues[i], mTextPaint, mItemWidth,
 //                        Layout.Alignment.ALIGN_CENTER, 1f, 1f, mBoringMetrics, false, mEllipsize,
 //                        mItemWidth);
-                mLayouts[i][0]= LayoutInflater.from(_context).inflate(R.layout.performance_custom_layout, this,false);
+                mLayouts[i][0] = LayoutInflater.from(_context).inflate(R.layout.performance_custom_layout, this, false);
 
 //                if(subText != null) {
 //                    mLayouts[i][1] = new BoringLayout(subText, mTextPaint, mItemWidth,
@@ -482,7 +481,7 @@ public class HorizontalPicker extends RelativeLayout {
             int position = scrollX - itemWithPadding / 2;
             color = getColor(position, item);
         } else if (item == mPressedItem) {
-           color = mTextColor.getColorForState(new int[]{android.R.attr.state_pressed}, color);
+            color = mTextColor.getColorForState(new int[]{android.R.attr.state_pressed}, color);
         }/* else if(item == mSelectedItem) {
             color = mTextColor.getColorForState(new int[]{android.R.attr.state_selected}, color);
         }*/
@@ -731,7 +730,7 @@ public class HorizontalPicker extends RelativeLayout {
                 for (int i = 0; i < mLayouts.length; i++) {
 //                    mLayouts[i][0] = new BoringLayout(mValues[i], mTextPaint, mItemWidth, Layout.Alignment.ALIGN_CENTER,
 //                            1f, 1f, mBoringMetrics, false, mEllipsize, mItemWidth);
-                    mLayouts[i][0] = LayoutInflater.from(_context).inflate(R.layout.performance_custom_layout, this,false);
+                    mLayouts[i][0] = LayoutInflater.from(_context).inflate(R.layout.performance_custom_layout, this, false);
                     this.addView(mLayouts[i][0]);
 
 //                    if(subText != null) {
@@ -1056,7 +1055,6 @@ public class HorizontalPicker extends RelativeLayout {
         public void onItemClicked(int index);
 
     }
-
 
 
     public static class SavedState extends BaseSavedState {
