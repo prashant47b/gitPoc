@@ -1,25 +1,15 @@
 package com.lab47billion.appchooser.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
-import com.lab47billion.appchooser.R;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by prashant on 6/10/2016.
@@ -36,20 +26,32 @@ public abstract class CenterLockBaseAdapter extends RecyclerView.Adapter<Recycle
     private int centerPosition;
     public List list;
 
-    public CenterLockBaseAdapter(Context context, int screenWidth, int sideItems) {
+    /**
+     * Default constructor to get the required parameters
+     * @param context Activity to get the device width
+     * @param sideItems no of side items to be appeared on both sides
+     */
+
+    public CenterLockBaseAdapter(Activity context, int sideItems) {
         this.context = context;
-        this.screenWidth = screenWidth;
+        int mWidth = context.getWindowManager().getDefaultDisplay().getWidth();
+        this.screenWidth = mWidth;
         if (sideItems < 0) {
             throw new IllegalArgumentException("Number of items on each side must be grater or equal to 0.");
         } else if (mSideItems != sideItems) {
             mSideItems = sideItems;
         }
     }
-
+    // get the custom layout resource id to be shown.
     protected abstract int getCustomLayoutResource();
 
+    // get the viewHolder for the custom layout passed
     protected abstract RecyclerView.ViewHolder getViewHolder(View view);
 
+    /**
+     * Update the list to add footer elements in it
+     * @param list pass the item list in it (Avoid adding null on it)
+     */
     public void setList(List list) {
         this.list = list;
         for (int i = 0; i < mSideItems; i++) {
@@ -59,13 +61,16 @@ public abstract class CenterLockBaseAdapter extends RecyclerView.Adapter<Recycle
         }
         notifyDataSetChanged();
     }
-
+    // set the footer View to be added if null added the default footer.
     protected abstract View getFooterView();
 
+    // set the Header View to be added if null added the default header.
     protected abstract View getHeaderView();
 
+    // set the footer ViewHolder to be added if null added the default footer view holder.
     protected abstract RecyclerView.ViewHolder getFooterViewHolder(View view);
 
+    // set the header ViewHolder to be added if null added the default header view holder.
     protected abstract RecyclerView.ViewHolder getHeaderViewHolder(View view);
 
     @Override
@@ -130,15 +135,26 @@ public abstract class CenterLockBaseAdapter extends RecyclerView.Adapter<Recycle
         }
     }
 
-
+    /**
+     *
+     * @return single item width
+     */
     public int getScreenViewWidth() {
         return screenWidth / (mSideItems * 2 + 1);
     }
 
+    /**
+     *
+     * @return number of side items
+     */
     public int getSideItems() {
         return mSideItems;
     }
 
+    /**
+     *
+     * @return the center item position
+     */
     public int getCenterPosition() {
         return centerPosition;
     }
@@ -147,11 +163,14 @@ public abstract class CenterLockBaseAdapter extends RecyclerView.Adapter<Recycle
         this.centerPosition = centerPosition;
     }
 
+    // Default footer view holder
     public class FooterViewHolder extends RecyclerView.ViewHolder {
         public FooterViewHolder(View itemView) {
             super(itemView);
         }
     }
+
+    // Default header view holder
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(View itemView) {
             super(itemView);

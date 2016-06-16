@@ -1,5 +1,6 @@
 package com.lab47billion.appchooser.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -31,8 +32,8 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
     private Typeface aller_rg;
     private Typeface aller_lt;
 
-    public CenterLockDateAdapter(Context context, int screenWidth, int sideItems) {
-        super(context, screenWidth, sideItems);
+    public CenterLockDateAdapter(Activity context, int sideItems) {
+        super(context, sideItems);
         this.list = new ArrayList<>();
         aller_rg = Typeface.createFromAsset(context.getAssets(), "Aller_Rg.ttf");
         aller_lt = Typeface.createFromAsset(context.getAssets(), "Aller_Lt.ttf");
@@ -102,11 +103,6 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
                 dateViewHolder.viewGroup.setBackgroundResource(R.drawable.performance_item_bg);
                 dateViewHolder.dateOfmonth.setTextColor(Color.RED);
             }
-//            if (position == getCenterPosition()) {
-//                dateViewHolder.dateOfmonth.setTextColor(Color.RED);
-//            } else {
-//                dateViewHolder.dateOfmonth.setTextColor(Color.BLACK);
-//            }
             dateViewHolder.viewGroup.setPadding(5, 5, 5, 15);
         }
     }
@@ -122,7 +118,7 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
     private void initList() {
         Calendar _calendar = Calendar.getInstance(Locale.getDefault());
 
-        // Trailing Month days
+        // Trailing Month days for header view
         for (int i = 0; i < getSideItems(); i++) {
             _calendar.add(Calendar.DATE, -1);
             list.add(_calendar.get(Calendar.DATE)
@@ -154,6 +150,11 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
         }
     }
 
+    /**
+     * Used to get the date for the position supplied
+     * @param position
+     * @return Calender object for the specified position
+     */
 
     public Calendar getDate(int position) {
         Calendar calendar = Calendar.getInstance();
@@ -180,12 +181,6 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
             dayOfmonth = (TextView) itemView.findViewById(R.id.dayOfmonth);
             month = (TextView) itemView.findViewById(R.id.month);
             viewGroup = (ViewGroup) itemView.findViewById(R.id.internal_layout);
-        }
-    }
-
-    public class FooterViewHolder extends RecyclerView.ViewHolder {
-        public FooterViewHolder(View itemView) {
-            super(itemView);
         }
     }
 }

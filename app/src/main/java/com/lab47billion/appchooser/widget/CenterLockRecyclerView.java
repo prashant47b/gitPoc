@@ -56,6 +56,10 @@ public class CenterLockRecyclerView extends RecyclerView {
         });
     }
 
+    /**
+     *  Use this method in place of parent setAdapter() method for getting all functionality of this view
+     * @param adapter CenterLockBaseAdapter object
+     */
     public void setAdapter(CenterLockBaseAdapter adapter) {
         super.setAdapter(adapter);
         this.centerLockBaseAdapter = (CenterLockBaseAdapter) adapter;
@@ -63,6 +67,10 @@ public class CenterLockRecyclerView extends RecyclerView {
         addItemTouchListener();
     }
 
+    /**
+     * Add the center lock listener in it for listening all center lock events
+     * @param centerLockListener pass CenterLockListener object in it
+     */
     public void setCenterLockListener(CenterLockListener centerLockListener) {
         this.centerLockListener = centerLockListener;
         callCenterListener(centerLockBaseAdapter.getSideItems());
@@ -71,12 +79,15 @@ public class CenterLockRecyclerView extends RecyclerView {
     @Override
     public boolean fling(int velocityX, int velocityY) {
 
-        velocityY *= 0.7;
-        // velocityX *= 0.7; for Horizontal recycler view. comment velocityY line not require for Horizontal Mode.
+        //for Horizontal recycler view. comment velocityY line not require for Horizontal Mode.
+        velocityX *= 0.7;
 
         return super.fling(velocityX, velocityY);
     }
 
+    /**
+     * Added touch listener for listening tap events and scroll recycler view to that position
+     */
     private void addItemTouchListener() {
         this.addOnItemTouchListener(new OnItemTouchListener() {
             @Override
@@ -100,6 +111,9 @@ public class CenterLockRecyclerView extends RecyclerView {
         });
     }
 
+    /**
+     * Added scroll listener for listening to scroll events
+     */
     private void addScroll() {
         this.addOnScrollListener(new OnScrollListener() {
             @Override
@@ -108,10 +122,6 @@ public class CenterLockRecyclerView extends RecyclerView {
                 LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
 
                 if (mCenterPivot == 0) {
-
-                    // Default pivot , Its a bit inaccurate .
-                    // Better pass the center pivot as your Center Indicator view's
-                    // calculated center on it OnGlobalLayoutListener event
                     mCenterPivot = lm.getOrientation() == LinearLayoutManager.HORIZONTAL ? (recyclerView.getLeft() + recyclerView.getRight()) : (recyclerView.getTop() + recyclerView.getBottom());
                 }
 
@@ -166,6 +176,10 @@ public class CenterLockRecyclerView extends RecyclerView {
     );
     }
 
+    /**
+     * Scroll to position when user click on particular item
+     * @param position Clicked item position
+     */
     private void setScrollToPosition(int position) {
         if (position >= centerLockBaseAdapter.getSideItems()) {
             isTapped=true;
@@ -177,6 +191,10 @@ public class CenterLockRecyclerView extends RecyclerView {
         }
     }
 
+    /**
+     * Notify center lock listener with the center position
+     * @param position current center item position
+     */
     private void callCenterListener(int position) {
         if (position != centerItemPosition) {
             centerItemPosition = position;
@@ -188,6 +206,10 @@ public class CenterLockRecyclerView extends RecyclerView {
         }
     }
 
+    /**
+     * Used to find currently center item
+     * @return Center item view
+     */
     private View findCenterView(LinearLayoutManager lm) {
 
         int minDistance = 0;

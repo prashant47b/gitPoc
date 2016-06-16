@@ -30,8 +30,7 @@ public class DriverPerformance extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        int mWidth = this.getWindowManager().getDefaultDisplay().getWidth();
-        final CenterLockDateAdapter performanceAdapter = new CenterLockDateAdapter(this, mWidth,2);
+        final CenterLockDateAdapter performanceAdapter = new CenterLockDateAdapter(this,2);
         recyclerView.setAdapter(performanceAdapter);
         recyclerView.scrollToPosition(0);
         recyclerView.setCenterLockListener(new CenterLockListener() {
