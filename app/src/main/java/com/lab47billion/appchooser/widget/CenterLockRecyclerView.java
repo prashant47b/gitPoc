@@ -127,6 +127,12 @@ public class CenterLockRecyclerView extends RecyclerView {
 
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     //ScrollStopped
+                    if (isSmoothScrolled){
+                        int position = lm.findLastCompletelyVisibleItemPosition() - centerLockBaseAdapter.getSideItems();
+                        callCenterListener(position);
+                        isSmoothScrolled=false;
+                    }
+
                     if (isDragged) {
                         View view = findCenterView(lm);//get the view nearest to center
                         if (view != null) {
@@ -140,31 +146,25 @@ public class CenterLockRecyclerView extends RecyclerView {
                             }
                             isSmoothScrolled=true;
                             isDragged=false;
-                            recyclerView.smoothScrollBy(scrollNeeded, 0);
+                            if (scrollNeeded==0){
+                                if (lm.findLastCompletelyVisibleItemPosition() == centerLockBaseAdapter.list.size() - 1) {
+                                    callCenterListener(lm.findLastCompletelyVisibleItemPosition() - centerLockBaseAdapter.getSideItems());
+                                }
+                                if (lm.findFirstVisibleItemPosition() == 0) {
+                                    callCenterListener(centerLockBaseAdapter.getSideItems());
+                                }
+                            }else {
+                                recyclerView.smoothScrollBy(scrollNeeded, 0);
+                            }
+
                         }
-                    }
-                    if (isSmoothScrolled){
-                        if (lm.findLastCompletelyVisibleItemPosition() == centerLockBaseAdapter.list.size() - 1) {
-                            callCenterListener(lm.findLastCompletelyVisibleItemPosition() - centerLockBaseAdapter.getSideItems());
-                        }
-                        if (lm.findFirstVisibleItemPosition() == 0) {
-                            callCenterListener(centerLockBaseAdapter.getSideItems());
-                        }
-                        int position = lm.findLastCompletelyVisibleItemPosition() - centerLockBaseAdapter.getSideItems();
-                        callCenterListener(position);
-                        isSmoothScrolled=false;
-                    }
-                    if (isTapped) {
-                        int position = lm.findLastCompletelyVisibleItemPosition() - centerLockBaseAdapter.getSideItems();
-                        callCenterListener(position);
-                        isTapped=false;
                     }
                 }
             if(newState==RecyclerView.SCROLL_STATE_DRAGGING ){
                 isDragged = true;
             }
             if(newState==RecyclerView.SCROLL_STATE_SETTLING ){
-                isDragged = true;
+//                isDragged = true;
             }
         }
 
@@ -182,7 +182,7 @@ public class CenterLockRecyclerView extends RecyclerView {
      */
     private void setScrollToPosition(int position) {
         if (position >= centerLockBaseAdapter.getSideItems()) {
-            isTapped=true;
+            isSmoothScrolled=true;
             if (position < centerItemPosition) {
                 this.smoothScrollToPosition(position - centerLockBaseAdapter.getSideItems());
             } else if (position > centerItemPosition) {
