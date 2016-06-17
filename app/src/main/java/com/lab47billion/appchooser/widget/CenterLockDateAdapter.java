@@ -26,9 +26,9 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
     public List<String> list;
     public final static String[] weekdays = new String[]{"", "Sun", "Mon", "Tue",
             "Wed", "Thu", "Fri", "Sat"};
-    public final static String[] months = {"January", "February", "March",
-            "April", "May", "June", "July", "August", "September",
-            "October", "November", "December"};
+    public final static String[] months = {"JAN", "FEB", "MAR",
+            "APR", "MAY", "JUN", "JUL", "AUG", "SEPT",
+            "OCT", "NOV", "DEC"};
     private Typeface aller_rg;
     private Typeface aller_lt;
 
@@ -85,7 +85,7 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
             int weekDay = Integer.parseInt(day_color[2]);
             int month = Integer.parseInt(day_color[3]);
             //setup Fonts
-            dateViewHolder.dateOfmonth.setTypeface(aller_rg);
+            dateViewHolder.dayOfmonth.setTypeface(aller_rg);
             dateViewHolder.dateOfmonth.setTypeface(aller_rg);
             dateViewHolder.month.setTypeface(aller_lt);
 
@@ -95,15 +95,21 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
             dateViewHolder.dayOfmonth.setText(weekdays[weekDay]);
             if (day_color[1].equals("GREY")) {
                 dateViewHolder.viewGroup.setBackgroundResource(R.drawable.item_disabled_backgroung);
-                dateViewHolder.dateOfmonth.setTextColor(Color.BLACK);
+                dateViewHolder.dateOfmonth.setTextColor(R.color.item_border_color);
+                dateViewHolder.dayOfmonth.setTextColor(R.color.item_border_color);
+                dateViewHolder.month.setTextColor(R.color.item_border_color);
             } else if (day_color[1].equals("WHITE")) {
                 dateViewHolder.viewGroup.setBackgroundResource(R.drawable.performance_item_bg);
                 dateViewHolder.dateOfmonth.setTextColor(Color.BLACK);
+                dateViewHolder.dayOfmonth.setTextColor(Color.BLACK);
+                dateViewHolder.month.setTextColor(Color.BLACK);
             } else if (day_color[1].equals("RED")) {
                 dateViewHolder.viewGroup.setBackgroundResource(R.drawable.performance_item_bg);
                 dateViewHolder.dateOfmonth.setTextColor(Color.RED);
+                dateViewHolder.dayOfmonth.setTextColor(Color.BLACK);
+                dateViewHolder.month.setTextColor(Color.BLACK);
             }
-            dateViewHolder.viewGroup.setPadding(5, 5, 5, 15);
+            dateViewHolder.viewGroup.setPadding(2, 10, 2, 20);
         }
     }
 
@@ -120,7 +126,7 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
 
         // Trailing Month days for header view
         for (int i = 0; i < getSideItems(); i++) {
-            _calendar.add(Calendar.DATE, -1);
+            _calendar.add(Calendar.DATE, 1);
             list.add(_calendar.get(Calendar.DATE)
                     + "-GREY"
                     + "-"
@@ -140,7 +146,7 @@ public class CenterLockDateAdapter extends CenterLockBaseAdapter {
 
         // Current Month Days
         for (int i = 1; i <= 40; i++) {
-            _calendar.add(Calendar.DATE, 1);
+            _calendar.add(Calendar.DATE, -1);
             list.add(_calendar.get(Calendar.DATE)
                     + "-WHITE"
                     + "-"

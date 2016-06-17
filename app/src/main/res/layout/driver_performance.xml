@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:orientation="vertical">
-
-    <com.lab47billion.appchooser.HorizontalPicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="none"
-        app:sideItems="2"
-        app:dividerSize="2dp"
-        app:values="@array/picker" />
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <com.lab47billion.appchooser.widget.CenterLockRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
@@ -26,33 +19,46 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="15dp"
-            android:background="@drawable/arrow"
-            android:layout_gravity="bottom"
-            />
+            android:background="@drawable/ic_panel_pointer_two"
+            android:layout_gravity="bottom" />
     </FrameLayout>
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/earningTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Earned"
             android:textColor="@android:color/black"
-            android:textSize="22sp" />
+            android:singleLine="true"
+            android:textSize="22sp"
+            fontPath="Aller_Lt.ttf" />
 
         <TextView
+            android:id="@+id/earningAmountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="₹ 200"
+            android:paddingLeft="10dp"
+            android:text="₹ 700"
             android:textColor="@android:color/black"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:singleLine="true"
+            fontPath="Aller_Lt.ttf" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_up"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:scaleType="centerInside" />
     </LinearLayout>
 
     <RelativeLayout
@@ -60,161 +66,101 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:background="@drawable/relative_bg">
 
         <View
             android:id="@+id/hidden_view"
             android:layout_width="1dp"
-            android:layout_height="1dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="10dp"
             android:layout_centerHorizontal="true" />
-
-        <LinearLayout
-            android:id="@+id/rides"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/ridesCount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:text="1700"
             android:layout_toLeftOf="@+id/hidden_view"
-            android:padding="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            fontPath="Aller_Rg.ttf"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/ridesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Rides"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/ridesCount"
             android:textColor="@android:color/black"
-            android:textSize="18sp">
+            android:textSize="14sp"
+            android:textAllCaps="true"
+            android:singleLine="true"
+            fontPath="Aller_Lt.ttf" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="Rides"
-                android:textColor="@android:color/black"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:text="17"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cancelled"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/cancelledCount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/hidden_view"
-            android:padding="5dp"
-            android:text="Cancelled"
-            android:textColor="@android:color/black"
-            android:textSize="18sp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="Cancelled"
-                android:textColor="@android:color/black"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:text="04"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/distance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rides"
-            android:layout_toLeftOf="@+id/hidden_view"
-            android:padding="5dp"
-            android:text="Distance(Km)"
-            android:textColor="@android:color/black"
-            android:textSize="18sp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rides"
-                android:text="Distance(Km)"
-                android:textColor="@android:color/black"
-                android:layout_weight="0.3"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:text="93.5"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/online"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:text="04000"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/cancelled"
-            android:layout_toRightOf="@+id/hidden_view"
-            android:padding="5dp"
-            android:text="Online Time (Hrs)"
             android:textColor="@android:color/black"
-            android:textSize="18sp">
+            android:textSize="14sp"
+            fontPath="Aller_Rg.ttf"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Online Time (Hrs)"
-                android:textColor="@android:color/black"
-                android:layout_weight="0.3"
-                android:singleLine="true"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/cancelledTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="Cancelled"
+            android:layout_toRightOf="@+id/hidden_view"
+            android:layout_toLeftOf="@+id/cancelledCount"
+            android:textColor="@android:color/black"
+            fontPath="Aller_Lt.ttf"
+            android:textAllCaps="true"
+            android:singleLine="true"
+            android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:text="4.25"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
 
-        </LinearLayout>
     </RelativeLayout>
 
     <TextView
-        android:layout_marginTop="10dp"
+        android:id="@+id/leaderboardTextView"
+        android:layout_marginTop="00dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/item_disable_bg"
         android:padding="10dp"
-        android:text="LeaderBoard"
+        android:text="Ledger"
         android:textAllCaps="true"
+        fontPath="Aller_Rg.ttf"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/data"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="10dp"
         android:textAllCaps="true"
         android:gravity="center"
+        fontPath="Aller_Lt.ttf"
         android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:visibility="visible" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/driverRidesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
 </LinearLayout>

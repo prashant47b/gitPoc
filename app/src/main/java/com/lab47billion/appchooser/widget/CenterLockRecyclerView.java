@@ -14,14 +14,13 @@ import android.view.View;
  */
 public class CenterLockRecyclerView extends RecyclerView {
 
-    public static final String TAG = "HorizontalCalender";
+    public static final String TAG = "CenterLockRecyclerView";
     private CenterLockListener centerLockListener;
     private CenterLockBaseAdapter centerLockBaseAdapter;
     //The pivot to be snapped to
     private int mCenterPivot;
     private GestureDetector gestureDetector;
     private int centerItemPosition = 0;
-    private boolean isTapped=false;
     private boolean isDragged=false;
     private boolean isSmoothScrolled =false;
 
@@ -162,9 +161,6 @@ public class CenterLockRecyclerView extends RecyclerView {
                 }
             if(newState==RecyclerView.SCROLL_STATE_DRAGGING ){
                 isDragged = true;
-            }
-            if(newState==RecyclerView.SCROLL_STATE_SETTLING ){
-//                isDragged = true;
             }
         }
 

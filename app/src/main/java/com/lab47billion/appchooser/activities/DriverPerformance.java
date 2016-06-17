@@ -1,34 +1,68 @@
 package com.lab47billion.appchooser.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.lab47billion.appchooser.R;
+import com.lab47billion.appchooser.adapter.DriverRideListAdapter;
 import com.lab47billion.appchooser.widget.CenterLockDateAdapter;
 import com.lab47billion.appchooser.widget.CenterLockListener;
 import com.lab47billion.appchooser.widget.CenterLockRecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by prashant on 6/10/2016.
  */
 public class DriverPerformance extends AppCompatActivity {
     private CenterLockRecyclerView recyclerView;
-    private TextView data;
+    private RecyclerView driverRidesList;
+    private TextView data,earningTextView,earningAmountTextView,ridesTextView,ridesCount,cancelledTextView,cancelledCount,
+            leaderboardTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.driver_performance);
+        idInit();
+        setupCenteredRecyclerView();
+        setupDriverRidesRecyclerView();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    private void idInit(){
         recyclerView = (CenterLockRecyclerView) findViewById(R.id.recyclerView);
+        driverRidesList= (RecyclerView) findViewById(R.id.driverRidesList);
         data = (TextView) findViewById(R.id.data);
+        earningTextView= (TextView) findViewById(R.id.earningTextView);
+        earningAmountTextView= (TextView) findViewById(R.id.earningAmountTextView);
+        ridesTextView= (TextView) findViewById(R.id.ridesTextView);
+        ridesCount= (TextView) findViewById(R.id.ridesCount);
+        cancelledTextView= (TextView) findViewById(R.id.cancelledTextView);
+        cancelledCount= (TextView) findViewById(R.id.cancelledCount);
+        leaderboardTextView= (TextView) findViewById(R.id.leaderboardTextView);
+
+    }
+
+    private void setupCenteredRecyclerView(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         final CenterLockDateAdapter performanceAdapter = new CenterLockDateAdapter(this,2);
         recyclerView.setAdapter(performanceAdapter);
@@ -45,5 +79,15 @@ public class DriverPerformance extends AppCompatActivity {
         });
     }
 
-
+    private void setupDriverRidesRecyclerView(){
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        driverRidesList.setLayoutManager(linearLayoutManager);
+        List list=new ArrayList();
+        for (int i=0;i<20;i++){
+            list.add("data");
+        }
+        DriverRideListAdapter performanceAdapter = new DriverRideListAdapter(this,list);
+        driverRidesList.setAdapter(performanceAdapter);
+    }
 }

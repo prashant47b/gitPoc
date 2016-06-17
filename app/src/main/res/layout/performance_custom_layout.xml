@@ -21,8 +21,10 @@
             android:layout_gravity="center_horizontal"
             android:text="WED"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
+            android:textAllCaps="true"
+            android:singleLine="true"
             />
 
         <TextView
@@ -43,6 +45,8 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:text="June"
+            android:textAllCaps="true"
+            android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/black" />
     </LinearLayout>
