@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/shuffleRelativeLayout">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Congratulations ! Your wallet is active"
-        android:id="@+id/textView"
+        android:hint="First"
+        android:id="@+id/firstTextView"
         android:textSize="24sp"
-        android:layout_centerInParent="true"
         android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        />
+        android:background="@drawable/earnings_status"
+        android:visibility="gone"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Second"
+        android:id="@+id/secondTextView"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:background="@drawable/earnings_status"
+        android:visibility="gone"
+        android:gravity="center" />
+
+    <com.lab47billion.appchooser.week.WeekView
+        android:id="@+id/weekView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:eventTextColor="@android:color/white"
+        app:textSize="14sp"
+        app:hourHeight="30dp"
+        app:headerColumnPadding="8dp"
+        app:headerColumnTextColor="#8f000000"
+        app:headerRowPadding="12dp"
+        app:columnGap="4dp"
+        app:noOfVisibleDays="7"
+        app:headerRowBackgroundColor="#ffefefef"
+        app:dayBackgroundColor="#05000000"
+        app:todayBackgroundColor="#1848adff"
+        app:headerColumnBackground="#ffffffff"
+        app:futureBackgroundColor="@android:color/holo_blue_light" />
+
 </RelativeLayout>

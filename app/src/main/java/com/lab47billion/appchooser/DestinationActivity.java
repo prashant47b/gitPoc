@@ -13,6 +13,6 @@ public class DestinationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.println(System.currentTimeMillis());
-        setContentView(R.layout.destination);
+        setContentView(com.lab47billion.appchooser.R.layout.destination);
     }
 }

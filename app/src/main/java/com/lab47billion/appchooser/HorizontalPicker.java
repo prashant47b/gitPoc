@@ -38,7 +38,6 @@ import android.support.v4.text.TextDirectionHeuristicsCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.support.v4.widget.ExploreByTouchHelper;
 import android.text.BoringLayout;
-import android.text.Layout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -48,7 +47,6 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.EdgeEffect;
@@ -147,7 +145,7 @@ public class HorizontalPicker extends RelativeLayout {
     }
 
     public HorizontalPicker(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.horizontalPickerStyle);
+        this(context, attrs, com.lab47billion.appchooser.R.attr.horizontalPickerStyle);
         _context = context;
     }
 
@@ -162,7 +160,7 @@ public class HorizontalPicker extends RelativeLayout {
 
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
-                R.styleable.HorizontalPicker,
+                com.lab47billion.appchooser.R.styleable.HorizontalPicker,
                 defStyle, 0
         );
 
@@ -171,17 +169,17 @@ public class HorizontalPicker extends RelativeLayout {
         int sideItems = mSideItems;
 
         try {
-            mTextColor = a.getColorStateList(R.styleable.HorizontalPicker_android_textColor);
+            mTextColor = a.getColorStateList(com.lab47billion.appchooser.R.styleable.HorizontalPicker_android_textColor);
             if (mTextColor == null) {
                 mTextColor = ColorStateList.valueOf(0xFF000000);
             }
 
-            values = a.getTextArray(R.styleable.HorizontalPicker_values);
-            ellipsize = a.getInt(R.styleable.HorizontalPicker_android_ellipsize, ellipsize);
-            mDividerSize = a.getDimension(R.styleable.HorizontalPicker_dividerSize, mDividerSize);
-            mNormalTextSize = a.getDimension(R.styleable.HorizontalPicker_normalTextSize, 20);
-            mSelectedTextSize = a.getDimension(R.styleable.HorizontalPicker_selectedTextSize, -1);
-            sideItems = a.getInt(R.styleable.HorizontalPicker_sideItems, sideItems);
+            values = a.getTextArray(com.lab47billion.appchooser.R.styleable.HorizontalPicker_values);
+            ellipsize = a.getInt(com.lab47billion.appchooser.R.styleable.HorizontalPicker_android_ellipsize, ellipsize);
+            mDividerSize = a.getDimension(com.lab47billion.appchooser.R.styleable.HorizontalPicker_dividerSize, mDividerSize);
+            mNormalTextSize = a.getDimension(com.lab47billion.appchooser.R.styleable.HorizontalPicker_normalTextSize, 20);
+            mSelectedTextSize = a.getDimension(com.lab47billion.appchooser.R.styleable.HorizontalPicker_selectedTextSize, -1);
+            sideItems = a.getInt(com.lab47billion.appchooser.R.styleable.HorizontalPicker_sideItems, sideItems);
 
             if (mNormalTextSize > -1) {
                 setTextSize(mNormalTextSize);
@@ -420,7 +418,7 @@ public class HorizontalPicker extends RelativeLayout {
 //                mLayouts[i][0].replaceOrMake(mValues[i], mTextPaint, mItemWidth,
 //                        Layout.Alignment.ALIGN_CENTER, 1f, 1f, mBoringMetrics, false, mEllipsize,
 //                        mItemWidth);
-                mLayouts[i][0] = LayoutInflater.from(_context).inflate(R.layout.performance_custom_layout, this, false);
+                mLayouts[i][0] = LayoutInflater.from(_context).inflate(com.lab47billion.appchooser.R.layout.performance_custom_layout, this, false);
 
 //                if(subText != null) {
 //                    mLayouts[i][1] = new BoringLayout(subText, mTextPaint, mItemWidth,
@@ -730,7 +728,7 @@ public class HorizontalPicker extends RelativeLayout {
                 for (int i = 0; i < mLayouts.length; i++) {
 //                    mLayouts[i][0] = new BoringLayout(mValues[i], mTextPaint, mItemWidth, Layout.Alignment.ALIGN_CENTER,
 //                            1f, 1f, mBoringMetrics, false, mEllipsize, mItemWidth);
-                    mLayouts[i][0] = LayoutInflater.from(_context).inflate(R.layout.performance_custom_layout, this, false);
+                    mLayouts[i][0] = LayoutInflater.from(_context).inflate(com.lab47billion.appchooser.R.layout.performance_custom_layout, this, false);
                     this.addView(mLayouts[i][0]);
 
 //                    if(subText != null) {

@@ -12,7 +12,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setFontAttrId(R.attr.fontPath)
+                        .setFontAttrId(com.lab47billion.appchooser.R.attr.fontPath)
                         .build()
         );
     }

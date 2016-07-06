@@ -53,9 +53,10 @@
             fontPath="Aller_Lt.ttf" />
 
         <ImageView
+            android:id="@+id/earningImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_up"
+            android:src="@drawable/earnings_status"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
             android:scaleType="centerInside" />
@@ -78,6 +79,7 @@
             android:layout_marginLeft="10dp"
             android:paddingLeft="10dp"
             android:layout_centerHorizontal="true" />
+
         <TextView
             android:id="@+id/ridesCount"
             android:layout_width="wrap_content"
@@ -145,17 +147,37 @@
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/data"
+    <RelativeLayout
+        android:id="@+id/shuffleRelativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textAllCaps="true"
-        android:gravity="center"
-        fontPath="Aller_Lt.ttf"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:visibility="visible" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/secondTextView"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/item_disable_bg"
+            android:padding="10dp"
+            android:text="Second"
+            android:textAllCaps="true"
+            fontPath="Aller_Rg.ttf"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/firstTextView"
+            android:layout_marginTop="00dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/item_disable_bg"
+            android:padding="10dp"
+            android:text="First"
+            android:textAllCaps="true"
+            fontPath="Aller_Rg.ttf"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/driverRidesList"

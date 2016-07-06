@@ -25,7 +25,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:support-v4'
     compile 'com.android.support:design:23.2.0'
-    compile ('com.github.javiersantos:AppUpdater:2.1.1'){
+    compile('com.github.javiersantos:AppUpdater:2.1.1') {
         exclude module: 'support-v4'
     }
     compile 'com.clevertap.android:clevertap-segment-android:1.0.1'

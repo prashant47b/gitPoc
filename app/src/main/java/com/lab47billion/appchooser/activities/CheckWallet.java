@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.lab47billion.appchooser.R;
 
+
 /**
  * Created by prashant on 5/23/2016.
  */

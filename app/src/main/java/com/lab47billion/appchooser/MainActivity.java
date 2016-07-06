@@ -20,10 +20,7 @@ import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.github.javiersantos.appupdater.objects.Update;
 
 import java.lang.ref.WeakReference;
-import java.security.Provider;
-import java.security.Security;
 import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(com.lab47billion.appchooser.R.layout.activity_main);
         checkForAppUpdate(this, false);
     }
 
